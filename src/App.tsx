@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {addQuestions, selectQuestions} from "./redux/questionSlice";
+import {addQuestions, selectQuestions, selectAnswered} from "./redux/questionSlice";
 import Welcome from "./components/welcome/Welcome";
 import Questions from "./components/questions/Questons";
 import {useSelector} from "react-redux";
-import {selectAnswered} from "./redux/questionSlice";
 import QuestionService from '../src/services/questions'
 import {FullPageSpinner} from "./components/libs";
 import {useAsyncError} from "./hooks/errorHooks";

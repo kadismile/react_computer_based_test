@@ -5,6 +5,7 @@ import {selectOneQuestion} from '../../redux/questionSlice'
 import { useSelector } from "react-redux";
 import Results from "../results/Results";
 import {PageLoader} from "../libs";
+import Timer from "../timer/Timer";
 
 
 interface IQuestions {
@@ -32,6 +33,7 @@ const Questions: React.FC<IQuestions> = (props) => {
             {
               question?.category  ?
                 <>
+                  <Timer/>
                   <TestProgress/>
                   <h2> {question?.category}</h2>
                   <br/>
