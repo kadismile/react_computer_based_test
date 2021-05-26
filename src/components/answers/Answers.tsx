@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {setAnswered, setCorrectAnswer, selectAnswered} from "../../redux/questionSlice";
+import React, {useEffect, useState} from "react";
+import {setAnswered, setCorrectAnswer, selectAnswered, selectMoveToNext, moveToNextQuestion} from "../../redux/questionSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 interface IAnswers {
@@ -7,9 +7,18 @@ interface IAnswers {
 }
 const Answers: React.FC<IAnswers> = (props) => {
   const index = useSelector(selectAnswered);
+  const autoSubmit = useSelector(selectMoveToNext);
   const dispatch = useDispatch();
   const {correctAnswer} = props
   const [userAnswer, setUserAnswer] = useState(null)
+
+  useEffect(() => {
+    if (autoSubmit === true) {
+      console.log(" autoSubmit ---> ", autoSubmit)
+      submitButton()
+      dispatch(moveToNextQuestion(false))
+    }
+  },[autoSubmit])
 
   const submitButton = () => {
     dispatch(setAnswered())
